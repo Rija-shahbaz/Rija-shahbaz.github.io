@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rija Shahbaz — Creative &amp; Digital Marketing Strategist</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --ink:#0e0d0c; --bone:#ede7dc; --red:#9c2116; --silver:#c7c2b8; --charcoal:#1c1a18;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  body{ background:var(--ink); color:var(--bone); font-family:'Instrument Sans',sans-serif; overflow-x:hidden; max-width:100vw; }
+
+  .grain{ position:absolute; inset:-50%; width:200%; height:200%; pointer-events:none; opacity:0.13; mix-blend-mode:overlay; z-index:1; }
+  .grain svg{ width:100%; height:100%; }
+
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); margin-bottom:10px; }
+  h2.section-title{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(2.2rem, 5vw, 3.6rem); color:var(--bone); }
+
+  /* ============ SECTION 1 — INTRO ============ */
+  #intro{ position:relative; width:100%; height:100svh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .vignette{ position:absolute; inset:0; background:radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.65) 100%); z-index:4; pointer-events:none; }
+  .aperture-wrap{ position:relative; width:min(46vh,46vw,320px); height:min(46vh,46vw,320px); display:flex; align-items:center; justify-content:center; }
+  .photo-well{ position:absolute; inset:0; border-radius:50%; overflow:hidden; background:#000; }
+  .photo-well img{ width:100%; height:100%; object-fit:cover; filter:grayscale(0.55) contrast(1.12) brightness(0.92); transform:scale(1.12); transition:filter 1.6s ease; }
+  .blade{ position:absolute; top:50%; left:50%; width:100%; height:100%; transform-origin:50% 50%; }
+  .blade svg{ position:absolute; top:50%; left:50%; width:140%; height:140%; transform:translate(-50%,-50%); overflow:visible; }
+  .ring{ position:absolute; inset:-2px; border-radius:50%; border:1px solid rgba(199,194,184,0.35); z-index:3; }
+  .caption{ position:absolute; left:50%; top:76%; transform:translate(-50%,0); text-align:center; opacity:0; z-index:6; width:100%; padding:0 20px; }
+  .caption .name{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(1.8rem, 6vw, 3.4rem); color:var(--bone); }
+  .caption .rule{ width:34px; height:1px; background:var(--red); margin:14px auto; }
+  .caption .title{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.18em; color:var(--silver); }
+  .corner-fixed, .scroll-cue-fixed{ position:absolute; bottom:20px; font-family:'IBM Plex Mono', monospace; font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(199,194,184,0.55); opacity:0; z-index:6; }
+  .corner-fixed{ right:20px; text-align:right; line-height:1.6; }
+  .corner-fixed span{ color:var(--red); }
+  .scroll-cue-fixed{ left:20px; display:flex; align-items:center; gap:8px; }
+  .scroll-cue-fixed::after{ content:""; width:16px; height:1px; background:var(--silver); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ width:16px; opacity:0.4; } 50%{ width:28px; opacity:1; } }
+
+  /* ============ SECTION 2 — 3D ORBIT HUB ============ */
+  #hub{ position:relative; width:100%; height:100svh; min-height:480px; overflow:hidden; touch-action:none; }
+  #hub canvas{ display:block; width:100%; height:100%; }
+  .label-layer{ position:absolute; inset:0; pointer-events:none; z-index:5; }
+  .node-label{ position:absolute; transform:translate(-50%,-50%); font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--bone); pointer-events:auto; cursor:pointer; padding:6px 10px; white-space:nowrap; transition:color .3s ease, text-shadow .3s ease; }
+  .node-label:hover{ color:var(--red); text-shadow:0 0 14px rgba(156,33,22,0.6); }
+  .center-mono{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.4rem; z-index:4; pointer-events:none; text-align:center; }
+  .center-mono .sub{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.48rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--silver); margin-top:4px; }
+  .hint{ position:absolute; top:20px; left:50%; transform:translateX(-50%); font-family:'IBM Plex Mono', monospace; font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(199,194,184,0.45); z-index:6; text-align:center; width:90%; }
+
+  /* ============ BIO ============ */
+  #bio{ position:relative; padding:120px 6vw; max-width:1000px; margin:0 auto; }
+  .bio-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:48px; align-items:start; margin-top:24px; }
+  @media (max-width:760px){ .bio-grid{ grid-template-columns:1fr; } }
+  #bio p.lead{ font-family:'Fraunces', serif; font-style:italic; font-weight:400; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.6; color:var(--bone); }
+  #bio .rule{ width:34px; height:1px; background:var(--red); margin:24px 0; }
+  #bio p.support{ font-size:0.96rem; line-height:1.75; color:rgba(237,231,220,0.8); }
+  .bio-photos{ display:flex; flex-direction:column; gap:14px; }
+  .bio-photos img{ width:100%; border-radius:14px; border:1px solid rgba(199,194,184,0.25); display:block; }
+
+  /* ============ SKILLS & EXPERIENCE ============ */
+  #skills{ padding:100px 6vw; max-width:1100px; margin:0 auto; }
+  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:48px; }
+  @media (max-width:820px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-list, .tool-list{ list-style:none; }
+  .skill-list li, .tool-list li{
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; letter-spacing:0.03em;
+    padding:14px 0; border-bottom:1px solid rgba(199,194,184,0.15); color:rgba(237,231,220,0.85);
+    display:flex; align-items:center; gap:12px;
+  }
+  .skill-list svg, .tool-list svg{ flex:0 0 auto; width:18px; height:18px; stroke:var(--red); }
+
+  /* ============ WORK ============ */
+  section.work{ padding:100px 6vw 60px; position:relative; }
+  .case{ border-top:1px solid rgba(199,194,184,0.18); padding:56px 0; }
+  .case:last-child{ border-bottom:1px solid rgba(199,194,184,0.18); }
+  .case-top{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; margin-bottom:32px; }
+  .case-title-row{ display:flex; align-items:center; gap:16px; }
+  .case-title-row img.logo{ width:40px; height:40px; border-radius:10px; object-fit:cover; }
+  .case-title{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(1.5rem,3vw,2.1rem); }
+  .chip{ font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:100px; border:1px solid rgba(199,194,184,0.4); color:var(--silver); white-space:nowrap; }
+  .chip.spec{ border-color:var(--red); color:var(--red); }
+  .case-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media (max-width:820px){ .case-grid{ grid-template-columns:1fr; } }
+  .case-grid h4{ font-family:'IBM Plex Mono', monospace; font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--red); margin-bottom:8px; }
+  .case-grid p{ font-size:0.95rem; line-height:1.6; color:rgba(237,231,220,0.85); }
+
+  .grid-gallery{
+    margin-top:32px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:16px;
+  }
+  .grid-gallery .tile{
+    aspect-ratio:4/5;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid rgba(199,194,184,0.25);
+    background:var(--charcoal);
+  }
+  .grid-gallery .tile img, .grid-gallery .tile video{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+
+  .result-row{ margin-top:32px; display:flex; gap:28px; flex-wrap:wrap; }
+  .result-row .stat{ font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--silver); }
+  .result-row .stat b{ display:block; font-family:'Fraunces', serif; font-style:normal; font-weight:500; font-size:1.6rem; color:var(--bone); margin-bottom:4px; letter-spacing:0; }
+  .note{ margin-top:18px; font-size:0.78rem; color:rgba(199,194,184,0.6); font-style:italic; }
+
+  .carousel-block{ margin-top:20px; }
+  .carousel-label{ font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver); margin-bottom:10px; }
+  .cw{ position:relative; max-width:420px; }
+  .cw-track{ display:flex; overflow:hidden; border-radius:14px; border:1px solid rgba(199,194,184,0.25); background:var(--charcoal); }
+  .cw-slide{ min-width:100%; flex-shrink:0; aspect-ratio:4/5; overflow:hidden; transition:transform .5s cubic-bezier(.6,0,.2,1); }
+  .cw-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .cw-arrow{
+    position:absolute; top:40%; transform:translateY(-50%);
+    background:rgba(14,13,12,0.6); border:1px solid rgba(199,194,184,0.4); color:var(--bone);
+    width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:0.95rem;
+    display:flex; align-items:center; justify-content:center; transition:border-color .3s ease, color .3s ease;
+  }
+  .cw-arrow:hover{ border-color:var(--red); color:var(--red); }
+  .cw-prev{ left:-14px; } .cw-next{ right:-14px; }
+  .cw-dots{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
+  .cw-dots span{ width:7px; height:7px; border-radius:50%; background:rgba(199,194,184,0.4); cursor:pointer; transition:background .3s ease, transform .3s ease; }
+  .cw-dots span.active{ background:var(--red); transform:scale(1.2); }
+
+  /* ============ FOOTER ============ */
+  footer.site-footer{ position:relative; padding:120px 0 48px; overflow:hidden; border-top:1px solid rgba(199,194,184,0.18); }
+  .marquee{ position:relative; width:100%; overflow:hidden; padding:22px 0; border-top:1px solid rgba(199,194,184,0.18); border-bottom:1px solid rgba(199,194,184,0.18); }
+  .marquee-track{ display:flex; width:max-content; animation:scroll-left 32s linear infinite; }
+  .marquee:hover .marquee-track{ animation-play-state:paused; }
+  .marquee-track span{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(1.6rem, 4vw, 2.6rem); color:var(--bone); white-space:nowrap; padding:0 28px; display:flex; align-items:center; gap:28px; }
+  .marquee-track span::after{ content:"\2022"; color:var(--red); font-size:1.2rem; }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .contact-block{ max-width:1100px; margin:64px auto 0; padding:0 6vw; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px; }
+  .contact-cta h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(1.8rem, 4vw, 2.8rem); max-width:520px; }
+  .contact-links{ display:flex; flex-direction:column; gap:10px; text-align:right; }
+  .contact-links a{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.06em; color:var(--bone); text-decoration:none; }
+  .contact-links a:hover{ color:var(--red); }
+  .footer-bottom{ max-width:1100px; margin:64px auto 0; padding:24px 6vw 0; border-top:1px solid rgba(199,194,184,0.12); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(199,194,184,0.5); }
+  @media (max-width:700px){ .contact-block{ flex-direction:column; align-items:flex-start; } .contact-links{ text-align:left; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .blade, .photo-well img, .caption, .corner-fixed, .scroll-cue-fixed, .marquee-track{ transition:none !important; animation:none !important; }
+  }
+
+  .topnav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:flex-end; gap:24px; align-items:center;
+    padding:20px 6vw; font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    letter-spacing:0.08em; text-transform:uppercase; pointer-events:none;
+  }
+  .topnav a{ text-decoration:none; color:var(--bone); transition:color .3s ease; pointer-events:auto; opacity:0.8; }
+  .topnav a:hover{ color:var(--red); }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="work.html">Work</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- ============ SECTION 1 — INTRO ============ -->
+<section id="intro">
+  <div class="grain"><svg><filter id="noise1"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise1)"/></svg></div>
+  <div class="vignette"></div>
+  <div class="aperture-wrap" id="apertureWrap">
+    <div class="photo-well"><img src="images/profile.jpg" alt="Rija Shahbaz" id="profileImg"></div>
+    <div class="ring"></div>
+    <div id="blades"></div>
+  </div>
+  <div class="caption" id="caption">
+    <div class="name">Rija Shahbaz</div>
+    <div class="rule"></div>
+    <div class="title">Creative &amp; Digital Marketing Strategist</div>
+  </div>
+  <div class="scroll-cue-fixed" id="scrollCue">scroll to enter</div>
+  <div class="corner-fixed" id="cornerLabel">campaigns <span>&middot;</span> content <span>&middot;</span> conversion</div>
+</section>
+
+<!-- ============ SECTION 2 — 3D ORBIT HUB ============ -->
+<section id="hub">
+  <div class="hint">drag to orbit &middot; scroll or pinch to zoom</div>
+  <div class="center-mono">R&middot;S<span class="sub">select a path</span></div>
+  <div class="label-layer" id="labelLayer"></div>
+</section>
+
+<!-- ============ BIO ============ -->
+<section id="bio">
+  <div class="eyebrow">01 — bio</div>
+  <h2 class="section-title">Bio</h2>
+  <div class="bio-grid">
+    <div>
+      <p class="lead">I'm a creative strategist who's spent 3.5+ years running my own practice and managing multi-client agency accounts — from nail studios to restaurants to B2B brands.</p>
+      <div class="rule"></div>
+      <p class="support">I care about the same thing every time: understanding what a specific audience is actually afraid of, or actually wants, and building content that speaks to that instead of blending into the feed. I've worked across beauty and nail art, hospitality and restaurants, home organizing and lifestyle brands, and B2B/homeware — plus a speculative SaaS campaign to stretch into tech marketing. Different rooms, same method: find the real problem, not the surface-level one, then build toward it.</p>
+    </div>
+    <div class="bio-photos">
+      <img src="images/profile.jpg" alt="Rija Shahbaz">
+      <img src="images/bio-photo-2.png" alt="Rija Shahbaz">
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS & EXPERIENCE ============ -->
+<section id="skills">
+  <div class="eyebrow">02 — skills &amp; experience</div>
+  <h2 class="section-title">What I bring</h2>
+
+  <div class="skills-grid">
+    <div>
+      <div class="eyebrow" style="margin-top:8px;">Skills</div>
+      <ul class="skill-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11v2a1 1 0 001 1h3l4 4V6l-4 4H4a1 1 0 00-1 1z"/><path d="M16 8a5 5 0 010 8"/></svg>Content Marketing</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 15s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>Social Media Management</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l4-1 11-11a1.5 1.5 0 000-2l-1-1a1.5 1.5 0 00-2 0L5 16l-1 4z"/></svg>Copywriting</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Event Marketing</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.3-4.9-2.6-4.9 2.6.9-5.3-4-3.9 5.5-.8z"/></svg>Branding</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>Meta Ads</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Campaign Strategy — B2B &amp; B2C</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-top:8px;">Tools</div>
+      <ul class="tool-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>Google Trends</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Google Analytics</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>Meta Business Suite</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Facebook Business Manager</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4l14 8-14 8V4z"/></svg>CapCut</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h5a2 2 0 010 4H8V8zM8 12h6a2 2 0 010 4H8v-4z"/></svg>Canva</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work" id="work">
+  <div class="eyebrow" style="padding:0 6vw;">03 — selected work</div>
+  <h2 class="section-title" style="padding:0 6vw;">Case studies</h2>
+  <div style="padding:24px 6vw 0; max-width:640px;">
+    <p style="font-size:0.98rem; line-height:1.7; color:rgba(237,231,220,0.8);">Six case studies — real clients, a real spec pitch, and one speculative SaaS campaign — each with its own room to breathe on a dedicated page.</p>
+    <a href="work.html" style="display:inline-block; margin-top:28px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone); text-decoration:none; padding-bottom:6px; border-bottom:1px solid var(--red);">View all case studies &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Content Marketing</span><span>Social Media Management</span><span>Copywriting</span>
+      <span>Event Marketing</span><span>Branding</span><span>Meta Ads</span><span>Campaign Strategy</span>
+      <span>Content Marketing</span><span>Social Media Management</span><span>Copywriting</span>
+      <span>Event Marketing</span><span>Branding</span><span>Meta Ads</span><span>Campaign Strategy</span>
+    </div>
+  </div>
+  <div class="contact-block">
+    <div class="contact-cta">
+      <div class="eyebrow">04 — get in touch</div>
+      <h3>Have a brand with a story to tell? Let's talk.</h3>
+    </div>
+    <div class="contact-links">
+      <a href="contact.html">Full contact page &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Rija Shahbaz — Creative &amp; Digital Marketing Strategist</span>
+    <span>Karachi, Pakistan &middot; Remote / Cross-Border</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  /* ---------- INTRO APERTURE ---------- */
+  const BLADE_COUNT = 8;
+  const bladesHost = document.getElementById('blades');
+  for (let i = 0; i < BLADE_COUNT; i++){
+    const angle = (360 / BLADE_COUNT) * i;
+    const blade = document.createElement('div');
+    blade.className = 'blade';
+    blade.style.transform = `rotate(${angle}deg)`;
+    blade.innerHTML = `<svg viewBox="0 0 200 200"><path d="M100,100 L100,-40 A140,140 0 0,1 148,-20 Z" fill="#0e0d0c" /></svg>`;
+    bladesHost.appendChild(blade);
+  }
+  const blades = document.querySelectorAll('.blade');
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      blades.forEach((b, i) => {
+        b.style.transition = 'transform 1.15s cubic-bezier(.6,0,.2,1), opacity 1.15s ease';
+        b.style.transitionDelay = `${i * 0.03}s`;
+        const currentAngle = (360 / BLADE_COUNT) * i;
+        b.style.transform = `rotate(${currentAngle}deg) scale(2.4)`;
+        b.style.opacity = '0';
+      });
+      setTimeout(() => {
+        document.getElementById('profileImg').style.filter = 'grayscale(0.15) contrast(1.05) brightness(1)';
+        document.getElementById('caption').style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+        document.getElementById('caption').style.opacity = '1';
+        document.getElementById('scrollCue').style.transition = 'opacity 1s ease';
+        document.getElementById('scrollCue').style.opacity = '1';
+        document.getElementById('cornerLabel').style.transition = 'opacity 1s ease';
+        document.getElementById('cornerLabel').style.opacity = '1';
+      }, 900);
+    }, 500);
+  });
+
+  /* ---------- 3D ORBIT HUB (mobile-safe sizing) ---------- */
+  const hubContainer = document.getElementById('hub');
+  const labelLayer = document.getElementById('labelLayer');
+  const RED3D = 0x9c2116, SILVER3D = 0xc7c2b8;
+
+  function hubSize(){
+    return { w: hubContainer.clientWidth, h: hubContainer.clientHeight };
+  }
+  let hs = hubSize();
+
+  const scene = new THREE.Scene();
+  const isMobile = hs.w < 700;
+  const camera = new THREE.PerspectiveCamera(isMobile ? 62 : 50, hs.w / hs.h, 0.1, 100);
+  camera.position.set(0, 1.2, isMobile ? 7 : 9);
+
+  const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+  renderer.setSize(hs.w, hs.h);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  hubContainer.insertBefore(renderer.domElement, hubContainer.firstChild);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const rim = new THREE.PointLight(0xffffff, 1.1); rim.position.set(5,6,6); scene.add(rim);
+  const redGlow = new THREE.PointLight(RED3D, 1.4, 12); redGlow.position.set(-4,-2,3); scene.add(redGlow);
+
+  const orbitRadius = isMobile ? 2.4 : 3.2;
+  const ringGeo = new THREE.TorusGeometry(orbitRadius, 0.008, 8, 128);
+  const ringMat = new THREE.MeshBasicMaterial({ color: SILVER3D, transparent:true, opacity:0.28 });
+  const ring3d = new THREE.Mesh(ringGeo, ringMat);
+  ring3d.rotation.x = Math.PI / 2.6;
+  scene.add(ring3d);
+
+  const sections = [
+    { name:'Bio', anchor:'#bio' },
+    { name:'Skills', anchor:'#skills' },
+    { name:'Work', anchor:'work.html' },
+    { name:'Contact', anchor:'contact.html' }
+  ];
+  const nodeGroup = new THREE.Group();
+  scene.add(nodeGroup);
+
+  const nodeSize = isMobile ? 0.26 : 0.34;
+  const nodes = sections.map((s, i) => {
+    const angle = (i / sections.length) * Math.PI * 2;
+    const geo = new THREE.CircleGeometry(nodeSize, 48);
+    const mat = new THREE.MeshStandardMaterial({ color: 0x1c1a18, metalness:0.6, roughness:0.35, side: THREE.DoubleSide });
+    const mesh = new THREE.Mesh(geo, mat);
+    const outlineGeo = new THREE.RingGeometry(nodeSize, nodeSize+0.02, 48);
+    const outlineMat = new THREE.MeshBasicMaterial({ color: SILVER3D, side: THREE.DoubleSide, transparent:true, opacity:0.55 });
+    mesh.add(new THREE.Mesh(outlineGeo, outlineMat));
+    mesh.position.set(Math.cos(angle)*orbitRadius, 0, Math.sin(angle)*orbitRadius);
+    mesh.rotation.x = Math.PI / 2.6;
+    nodeGroup.add(mesh);
+    return { mesh, name:s.name, angle, anchor:s.anchor };
+  });
+
+  nodes.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'node-label';
+    el.textContent = n.name;
+    el.addEventListener('click', () => {
+      if (n.anchor.startsWith('#')) {
+        const target = document.querySelector(n.anchor);
+        if (target) target.scrollIntoView({ behavior:'smooth' });
+      } else {
+        window.location.href = n.anchor;
+      }
+    });
+    labelLayer.appendChild(el);
+    n.el = el;
+  });
+
+  function project3d(mesh){
+    const vector = new THREE.Vector3();
+    mesh.getWorldPosition(vector);
+    vector.project(camera);
+    const size = hubSize();
+    return {
+      x: (vector.x * 0.5 + 0.5) * size.w,
+      y: (-vector.y * 0.5 + 0.5) * size.h,
+      z: vector.z
+    };
+  }
+
+  let isDragging = false, prevX = 0, prevY = 0;
+  let camAngle = 0, camTilt = 1.2, camDist = isMobile ? 7 : 9;
+
+  hubContainer.addEventListener('mousedown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; });
+  window.addEventListener('mouseup', () => isDragging = false);
+  window.addEventListener('mousemove', e => {
+    if(!isDragging) return;
+    const dx = e.clientX - prevX, dy = e.clientY - prevY;
+    camAngle -= dx * 0.005;
+    camTilt = Math.max(0.4, Math.min(2.6, camTilt - dy * 0.005));
+    prevX = e.clientX; prevY = e.clientY;
+  });
+  hubContainer.addEventListener('wheel', e => {
+    camDist = Math.max(4, Math.min(16, camDist + e.deltaY * 0.01));
+  }, { passive:true });
+
+  hubContainer.addEventListener('touchstart', e => {
+    isDragging = true; prevX = e.touches[0].clientX; prevY = e.touches[0].clientY;
+  }, { passive:true });
+  window.addEventListener('touchend', () => isDragging = false);
+  hubContainer.addEventListener('touchmove', e => {
+    if(!isDragging) return;
+    const dx = e.touches[0].clientX - prevX, dy = e.touches[0].clientY - prevY;
+    camAngle -= dx * 0.006;
+    camTilt = Math.max(0.4, Math.min(2.6, camTilt - dy * 0.006));
+    prevX = e.touches[0].clientX; prevY = e.touches[0].clientY;
+  }, { passive:true });
+
+  const clock3d = new THREE.Clock();
+  const autoSpin = 0.06;
+
+  function animateHub(){
+    requestAnimationFrame(animateHub);
+    const t = clock3d.getElapsedTime();
+    if(!isDragging) camAngle += autoSpin * 0.016;
+    camera.position.x = Math.sin(camAngle) * camDist;
+    camera.position.z = Math.cos(camAngle) * camDist;
+    camera.position.y = camTilt;
+    camera.lookAt(0,0,0);
+    nodes.forEach(n => {
+      n.mesh.position.y = Math.sin(t*0.6 + n.angle) * 0.1;
+      const p = project3d(n.mesh);
+      n.el.style.left = p.x + 'px';
+      n.el.style.top = p.y + 'px';
+      n.el.style.opacity = p.z < 1 ? 1 : 0;
+    });
+    renderer.render(scene, camera);
+  }
+  animateHub();
+
+  function resizeHub(){
+    const size = hubSize();
+    if (size.w === 0 || size.h === 0) return;
+    camera.aspect = size.w / size.h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(size.w, size.h);
+  }
+  window.addEventListener('resize', resizeHub);
+  window.addEventListener('orientationchange', () => setTimeout(resizeHub, 300));
+
+  /* ---------- REUSABLE CAROUSEL LOGIC ---------- */
+  function setupCarousel(id){
+    const track = document.getElementById(id + 'Track');
+    const dotsHost = document.getElementById(id + 'Dots');
+    const slides = track.querySelectorAll('.cw-slide');
+    let index = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => go(i));
+      dotsHost.appendChild(dot);
+    });
+
+    function go(i){
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dotsHost.querySelectorAll('span').forEach((d, idx) => d.classList.toggle('active', idx === index));
+    }
+
+    document.querySelectorAll(`.cw-prev[data-target="${id}"]`).forEach(btn => btn.addEventListener('click', () => go(index - 1)));
+    document.querySelectorAll(`.cw-next[data-target="${id}"]`).forEach(btn => btn.addEventListener('click', () => go(index + 1)));
+  }
+  setupCarousel('cw1');
+  setupCarousel('cw2');
+</script>
+
+</body>
+</html>

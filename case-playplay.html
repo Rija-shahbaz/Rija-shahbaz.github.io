@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PlayPlay — Rija Shahbaz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  :root{ --ink:#0e0d0c; --bone:#ede7dc; --red:#9c2116; --silver:#c7c2b8; --charcoal:#1c1a18; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  body{ background:var(--ink); color:var(--bone); font-family:'Instrument Sans',sans-serif; overflow-x:hidden; max-width:100vw; }
+  a{ color:inherit; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); margin-bottom:10px; }
+
+  /* top nav, shared across all subpages */
+  .topnav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6vw; font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+    background:linear-gradient(to bottom, rgba(14,13,12,0.85), transparent);
+  }
+  .topnav a{ text-decoration:none; color:var(--bone); transition:color .3s ease; }
+  .topnav a:hover{ color:var(--red); }
+  .topnav .brand{ font-family:'Fraunces', serif; font-style:italic; font-size:0.95rem; letter-spacing:0.02em; }
+
+  .hero{ padding:150px 6vw 60px; max-width:1000px; margin:0 auto; }
+  .hero .chip{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.12em;
+    text-transform:uppercase; padding:6px 14px; border-radius:100px; border:1px solid rgba(199,194,184,0.4);
+    color:var(--silver); margin-bottom:20px;
+  }
+  .hero .chip.spec{ border-color:var(--red); color:var(--red); }
+  .hero h1{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(2.6rem,7vw,5rem); line-height:1.05; }
+  .hero .tagline{ margin-top:20px; font-size:1.05rem; max-width:620px; color:rgba(237,231,220,0.8); line-height:1.6; }
+  .hero .logo{ width:56px; height:56px; border-radius:14px; object-fit:cover; margin-bottom:24px; }
+
+  .content{ max-width:1000px; margin:0 auto; padding:0 6vw 100px; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:48px; margin:56px 0; }
+  @media (max-width:760px){ .two-col{ grid-template-columns:1fr; gap:32px; } }
+  .two-col h4{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+  .two-col p{ font-size:1rem; line-height:1.7; color:rgba(237,231,220,0.85); }
+
+  .grid-gallery{ margin:48px 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
+  .grid-gallery .tile{ aspect-ratio:4/5; border-radius:14px; overflow:hidden; border:1px solid rgba(199,194,184,0.25); background:var(--charcoal); }
+  .grid-gallery .tile img, .grid-gallery .tile video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .result-row{ display:flex; gap:36px; flex-wrap:wrap; margin:40px 0 12px; }
+  .result-row .stat{ font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--silver); }
+  .result-row .stat b{ display:block; font-family:'Fraunces', serif; font-style:normal; font-weight:500; font-size:1.9rem; color:var(--bone); margin-bottom:6px; letter-spacing:0; }
+  .note{ font-size:0.8rem; color:rgba(199,194,184,0.6); font-style:italic; margin-top:8px; }
+
+  .carousel-block{ margin:32px 0; }
+  .carousel-label{ font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--silver); margin-bottom:10px; }
+  .cw{ position:relative; max-width:460px; }
+  .cw-track{ display:flex; overflow:hidden; border-radius:14px; border:1px solid rgba(199,194,184,0.25); background:var(--charcoal); }
+  .cw-slide{ min-width:100%; flex-shrink:0; aspect-ratio:4/5; overflow:hidden; transition:transform .5s cubic-bezier(.6,0,.2,1); }
+  .cw-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .cw-arrow{ position:absolute; top:40%; transform:translateY(-50%); background:rgba(14,13,12,0.6); border:1px solid rgba(199,194,184,0.4); color:var(--bone); width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:0.95rem; display:flex; align-items:center; justify-content:center; transition:border-color .3s ease, color .3s ease; }
+  .cw-arrow:hover{ border-color:var(--red); color:var(--red); }
+  .cw-prev{ left:-14px; } .cw-next{ right:-14px; }
+  .cw-dots{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
+  .cw-dots span{ width:7px; height:7px; border-radius:50%; background:rgba(199,194,184,0.4); cursor:pointer; transition:background .3s ease, transform .3s ease; }
+  .cw-dots span.active{ background:var(--red); transform:scale(1.2); }
+
+  .case-nav{
+    max-width:1000px; margin:0 auto; padding:40px 6vw 100px; display:flex; justify-content:space-between;
+    border-top:1px solid rgba(199,194,184,0.18); font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .case-nav a{ text-decoration:none; transition:color .3s ease; }
+  .case-nav a:hover{ color:var(--red); }
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.html" class="brand">R&middot;S</a>
+  <a href="work.html">&larr; all case studies</a>
+</div>
+
+<section class="hero">
+  <img class="logo" src="images/playplay-logo.jpeg" alt="PlayPlay logo">
+  <div class="chip spec">Speculative — Concept Campaign</div>
+  <h1>PlayPlay</h1>
+  <p class="tagline">A spec campaign for a video-creation SaaS — built on the insight that the real pain isn't making videos, it's waiting for them.</p>
+</section>
+<div class="content">
+  <div class="two-col">
+    <div>
+      <h4>The Real Problem</h4>
+      <p>PlayPlay's own customer stories point past "companies don't know how to make videos" toward the actual friction: companies have stories to tell, but the production pipeline — brief, agency, feedback, revisions, approval — is too slow. By the time the video ships, the moment it was meant for has already passed.</p>
+    </div>
+    <div>
+      <h4>The Strategic Insight</h4>
+      <p>Positioned the brand around <em>"Your idea shouldn't wait for a production team,"</em> rather than the flatter "create videos easily." The real emotional pain isn't video-making skill — it's watching a good idea go stale while it sits in a workflow.</p>
+    </div>
+  </div>
+
+  <div class="carousel-block">
+    <div class="carousel-label">Concept 1 — production speed</div>
+    <div class="cw" id="cw1">
+      <div class="cw-track" id="cw1Track">
+        <div class="cw-slide"><img src="images/playplay-slides/slide-a.png" alt="Slide 1"></div>
+        <div class="cw-slide"><img src="images/playplay-slides/slide-b.png" alt="Slide 2"></div>
+        <div class="cw-slide"><img src="images/playplay-slides/slide-c.png" alt="Slide 3"></div>
+        <div class="cw-slide"><img src="images/playplay-slides/slide-d.png" alt="Slide 4"></div>
+      </div>
+      <button class="cw-arrow cw-prev" data-target="cw1" aria-label="Previous">&#8592;</button>
+      <button class="cw-arrow cw-next" data-target="cw1" aria-label="Next">&#8594;</button>
+      <div class="cw-dots" id="cw1Dots"></div>
+    </div>
+  </div>
+
+  <div class="carousel-block">
+    <div class="carousel-label">Concept 2 — cross-team brand consistency</div>
+    <div class="cw" id="cw2">
+      <div class="cw-track" id="cw2Track">
+        <div class="cw-slide"><img src="images/playplay-concept-2.png" alt="Concept 2"></div>
+      </div>
+      <div class="cw-dots" id="cw2Dots"></div>
+    </div>
+    <div class="note">Full slide-by-slide breakdown for this concept coming soon — shown here as the complete board for now.</div>
+  </div>
+</div>
+<div class="case-nav">
+  <a href="case-olvera.html">&larr; Olvera Luxe</a>
+  <a href="case-palmbeach.html">Palm Beach Organized &rarr;</a>
+</div>
+<script>
+  function setupCarousel(id){
+    const track = document.getElementById(id + 'Track');
+    const dotsHost = document.getElementById(id + 'Dots');
+    const slides = track.querySelectorAll('.cw-slide');
+    let index = 0;
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => go(i));
+      dotsHost.appendChild(dot);
+    });
+    function go(i){
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dotsHost.querySelectorAll('span').forEach((d, idx) => d.classList.toggle('active', idx === index));
+    }
+    document.querySelectorAll(`.cw-prev[data-target="${id}"]`).forEach(btn => btn.addEventListener('click', () => go(index - 1)));
+    document.querySelectorAll(`.cw-next[data-target="${id}"]`).forEach(btn => btn.addEventListener('click', () => go(index + 1)));
+  }
+</script><script>setupCarousel('cw1'); setupCarousel('cw2');</script>
+</body>
+</html>
