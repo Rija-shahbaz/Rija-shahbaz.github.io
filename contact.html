@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Contact — Rija Shahbaz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  :root{ --ink:#0e0d0c; --bone:#ede7dc; --red:#9c2116; --silver:#c7c2b8; --charcoal:#1c1a18; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{ height:100%; background:var(--ink); color:var(--bone); font-family:'Instrument Sans',sans-serif; overflow-x:hidden; }
+  a{ color:inherit; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); margin-bottom:14px; }
+
+  .topnav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6vw; font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .topnav a{ text-decoration:none; color:var(--bone); transition:color .3s ease; }
+  .topnav a:hover{ color:var(--red); }
+  .topnav .brand{ font-family:'Fraunces', serif; font-style:italic; font-size:0.95rem; letter-spacing:0.02em; }
+
+  .grain{ position:absolute; inset:-50%; width:200%; height:200%; pointer-events:none; opacity:0.13; mix-blend-mode:overlay; z-index:0; }
+  .grain svg{ width:100%; height:100%; }
+
+  .wrap{
+    position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center;
+    padding:120px 6vw 80px;
+  }
+  .center{ max-width:640px; text-align:center; }
+  .center h1{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(2.4rem,6vw,4rem); line-height:1.15; }
+  .rule{ width:40px; height:1px; background:var(--red); margin:28px auto; }
+  .center p.support{ font-size:1.05rem; line-height:1.7; color:rgba(237,231,220,0.8); margin-bottom:44px; }
+
+  .links{ display:flex; flex-direction:column; gap:20px; align-items:center; }
+  .links a{
+    text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:0.95rem; letter-spacing:0.04em;
+    color:var(--bone); padding-bottom:4px; border-bottom:1px solid rgba(199,194,184,0.3);
+    transition:color .3s ease, border-color .3s ease;
+  }
+  .links a:hover{ color:var(--red); border-color:var(--red); }
+
+  .footer-bottom{
+    position:absolute; bottom:24px; left:0; right:0; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:rgba(199,194,184,0.45);
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="brand">R&middot;S</a>
+  <a href="work.html">&larr; case studies</a>
+</div>
+
+<div class="wrap">
+  <div class="grain"><svg><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg></div>
+
+  <div class="center">
+    <div class="eyebrow">get in touch</div>
+    <h1>Have a brand with a story to tell? Let's talk.</h1>
+    <div class="rule"></div>
+    <p class="support">Currently open to digital marketing manager, account manager, and social media specialist roles — remote or hybrid. Also taking on select freelance clients.</p>
+    <div class="links">
+      <a href="mailto:thesocialrija@gmail.com">thesocialrija@gmail.com</a>
+      <a href="https://www.instagram.com/thesocial.rija/" target="_blank" rel="noopener">Instagram — @thesocial.rija</a>
+      <a href="https://www.linkedin.com/in/rija-shahbaz/" target="_blank" rel="noopener">LinkedIn — /in/rija-shahbaz</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">Rija Shahbaz — Karachi, Pakistan &middot; Remote / Cross-Border</div>
+</div>
+
+</body>
+</html>
