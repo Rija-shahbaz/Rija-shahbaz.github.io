@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Work — Rija Shahbaz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  :root{ --ink:#0e0d0c; --bone:#ede7dc; --red:#9c2116; --silver:#c7c2b8; --charcoal:#1c1a18; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  body{ background:var(--ink); color:var(--bone); font-family:'Instrument Sans',sans-serif; overflow-x:hidden; max-width:100vw; }
+  a{ color:inherit; text-decoration:none; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); margin-bottom:10px; }
+
+  .topnav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6vw; font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+    background:linear-gradient(to bottom, rgba(14,13,12,0.85), transparent);
+  }
+  .topnav a:hover{ color:var(--red); }
+  .topnav .brand{ font-family:'Fraunces', serif; font-style:italic; font-size:0.95rem; letter-spacing:0.02em; }
+
+  .work-head{ max-width:1100px; margin:0 auto; padding:150px 6vw 40px; }
+  .work-head h1{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(2.4rem,6vw,4rem); }
+
+  .card-grid{
+    max-width:1100px; margin:0 auto; padding:20px 6vw 120px;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:28px;
+  }
+  .card{
+    display:block; border-radius:16px; overflow:hidden; border:1px solid rgba(199,194,184,0.2);
+    background:var(--charcoal); transition:transform .35s ease, border-color .35s ease;
+  }
+  .card:hover{ transform:translateY(-4px); border-color:var(--red); }
+  .card .cover{ aspect-ratio:4/3; overflow:hidden; position:relative; }
+  .card .cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .card .cover.typographic{
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 30% 20%, rgba(156,33,22,0.18), transparent 60%), var(--ink);
+  }
+  .card .cover.typographic span{ font-family:'Fraunces', serif; font-style:italic; font-size:2.2rem; color:rgba(237,231,220,0.35); }
+  .card .info{ padding:20px 22px 24px; }
+  .card .chip{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
+    text-transform:uppercase; padding:5px 11px; border-radius:100px; border:1px solid rgba(199,194,184,0.4);
+    color:var(--silver); margin-bottom:12px;
+  }
+  .card .chip.spec{ border-color:var(--red); color:var(--red); }
+  .card h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.4rem; margin-bottom:8px; }
+  .card p{ font-size:0.85rem; line-height:1.5; color:rgba(237,231,220,0.7); }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="brand">R&middot;S</a>
+  <a href="contact.html">get in touch &rarr;</a>
+</div>
+
+<div class="work-head">
+  <div class="eyebrow">selected work</div>
+  <h1>Case studies</h1>
+</div>
+
+<div class="card-grid">
+
+  <a class="card" href="case-olvera.html">
+    <div class="cover"><img src="images/olvera-carousel-1.jpg" alt="Olvera Luxe Nail Studio"></div>
+    <div class="info">
+      <div class="chip">Real Client</div>
+      <h3>Olvera Luxe Nail Studio</h3>
+      <p>Local bookings and online press-on orders, driven by personal branding and an influencer ambassador system.</p>
+    </div>
+  </a>
+
+  <a class="card" href="case-playplay.html">
+    <div class="cover"><img src="images/playplay-slides/slide-a.png" alt="PlayPlay"></div>
+    <div class="info">
+      <div class="chip spec">Speculative</div>
+      <h3>PlayPlay</h3>
+      <p>A SaaS spec campaign built on one insight: your idea shouldn't wait for a production team.</p>
+    </div>
+  </a>
+
+  <a class="card" href="case-palmbeach.html">
+    <div class="cover"><img src="images/palmbeach-cover.jpg" alt="Palm Beach Organized"></div>
+    <div class="info">
+      <div class="chip spec">Speculative</div>
+      <h3>Palm Beach Organized</h3>
+      <p>A real pitch deck for a premium home-organizing brand — lifestyle-first, not generic decluttering.</p>
+    </div>
+  </a>
+
+  <a class="card" href="case-peara.html">
+    <div class="cover"><img src="images/peara-concept-1.png" alt="Peara Asian Kitchen"></div>
+    <div class="info">
+      <div class="chip">Real Client</div>
+      <h3>Peara Asian Kitchen</h3>
+      <p>Turning cravings into reservations with influencer-led storytelling content.</p>
+    </div>
+  </a>
+
+  <a class="card" href="case-grapes.html">
+    <div class="cover typographic"><span>GMV</span></div>
+    <div class="info">
+      <div class="chip">Agency Portfolio</div>
+      <h3>Grapes Media Ventures</h3>
+      <p>Managing five sectors at once — SaaS, finance, travel, hospitality, and wellness — under one agency roof.</p>
+    </div>
+  </a>
+
+  <a class="card" href="case-pillowfactory.html">
+    <div class="cover typographic"><span>PF</span></div>
+    <div class="info">
+      <div class="chip">Real Client — B2B</div>
+      <h3>Pillow Factory</h3>
+      <p>Zero to a real wholesale pipeline, built one reel at a time for a B2B homeware brand.</p>
+    </div>
+  </a>
+
+</div>
+
+</body>
+</html>
